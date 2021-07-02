@@ -1,14 +1,14 @@
-import logo from './logo.svg';
-import { Provider } from 'react-redux';
-import './App.css';
-import { Router } from 'react-router-dom';
 
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import "./services/api";
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { ToastContainer } from 'react-toastify';
-import GlobalStyle from './styles/global';
-import Routes from './routes';
+import { GlobalStyle } from './styles/global';
+import { Routes } from './routes';
 import history from './services/history';
+
 import { store, persistor } from './store';
 
 function App() {
