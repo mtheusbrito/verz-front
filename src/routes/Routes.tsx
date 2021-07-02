@@ -24,7 +24,7 @@ export const Route: React.FC<RouteProps> = ({
   const { signed } = useSelector<ApplicationState>((state) => state.auth) as AuthState;
 
   if (!signed && isPrivate) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/acessar" />;
   }
   if(signed && isAuthRoute){
     return <Redirect to="/" />;

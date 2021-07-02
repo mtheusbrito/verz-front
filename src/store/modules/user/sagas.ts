@@ -1,9 +1,9 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { call, put } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import history from "services/history";
 import { createFailure, createSuccess } from "./actions";
-import { CreateRequestAction } from "./types";
+import { CreateRequestAction, CREATE_REQUEST } from "./types";
 
 export function* create({ payload }: CreateRequestAction) {
   try {
@@ -27,3 +27,7 @@ export function* create({ payload }: CreateRequestAction) {
   }
   
 }
+
+export default all([
+  takeLatest(CREATE_REQUEST, create),
+]);

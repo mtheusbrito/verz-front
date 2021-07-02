@@ -12,7 +12,7 @@ import rootSaga from "./modules/rootSaga";
 //     ? console.tron.createSagaMonitor()
 //     : null;
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({});
 
 const middlewares = [sagaMiddleware];
 
