@@ -1,3 +1,4 @@
+import AuthLayout from "layouts/Auth";
 import { useSelector } from "react-redux";
 import { RouteProps as ReactDomRouteProps, Route as ReactDOMRoute,  Redirect} from "react-router-dom";
 import { AuthState } from "store/modules/auth/types";
@@ -37,7 +38,10 @@ export const Route: React.FC<RouteProps> = ({
     <ReactDOMRoute
       {...rest}
       render={() => (
-          <Component />
+          isAuthRoute? <AuthLayout>
+            <Component />
+          </AuthLayout> : <Component />
+          
       )}
     />
   );
