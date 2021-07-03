@@ -1,4 +1,6 @@
+import AdminLayout from "layouts/Admin";
 import AuthLayout from "layouts/Auth";
+import SiteLayout from "layouts/Site";
 import { useSelector } from "react-redux";
 import { RouteProps as ReactDomRouteProps, Route as ReactDOMRoute,  Redirect} from "react-router-dom";
 import { AuthState } from "store/modules/auth/types";
@@ -11,6 +13,7 @@ interface RouteProps extends ReactDomRouteProps {
   component: React.ComponentType
   signed?: boolean;
   isAuthRoute?: boolean
+  isSite?: boolean
 }
 
 
@@ -19,10 +22,12 @@ interface RouteProps extends ReactDomRouteProps {
 export const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   isAuthRoute =false,
+  isSite = false,
   component: Component,
   ...rest
 }) => {
-  const { signed } = useSelector<ApplicationState>((state) => state.auth) as AuthState;
+  // const { signed } = useSelector<ApplicationState>((state) => state.auth) as AuthState;
+  const signed = true;
 
   if (!signed && isPrivate) {
     return <Redirect to="/acessar" />;
@@ -40,7 +45,7 @@ export const Route: React.FC<RouteProps> = ({
       render={() => (
           isAuthRoute? <AuthLayout>
             <Component />
-          </AuthLayout> : <Component />
+          </AuthLayout> : (isSite ? <SiteLayout><Component/></SiteLayout> : <AdminLayout><Component/></AdminLayout>)
           
       )}
     />
