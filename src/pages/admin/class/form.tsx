@@ -9,9 +9,10 @@ import { FormHandles } from "@unform/core";
 import { Input } from 'components/Input';
 import { useCallback, useEffect, useRef } from 'react';
 import { DatePicker } from "components/DatePicker";
+import { createRequest, updateRequest } from "store/modules/class/actions";
 interface FormClassProps {
   entity?: Class;
-  module_id?:number;
+  id_module?:number;
   type: 'create' | 'edit';
 }
 interface FormProps extends Class{
@@ -23,20 +24,34 @@ const schema  = Yup.object().shape({
     exhibition:Yup.date().nullable().transform((curr, orig) => (orig === "" ? null : curr)).required('Campo obrigatório!').nullable(),
   })
 
-export default function FormClass({entity, module_id,type} : FormClassProps){
+export default function FormClass({entity, id_module,type} : FormClassProps){
   const loading = false;
+  const dispatch= useDispatch();
+
+   useEffect(()=>{
+    if(entity){
+      formRef.current?.setData(entity);
+    }
+  },[])
 
   const handleSubmit = useCallback(
     async (data: FormProps) =>{
       try{
         formRef.current?.setErrors({});
         await schema.validate(data, { abortEarly: false,});
-        data = {...data, module_id}
+        
         console.log(data.exhibition);
         if(type === 'create'){
-
+          data = {...data, id_module}
+          if(id_module){
+          dispatch(createRequest(data, id_module));
+          }
+         
         }else{
-
+            data = { ...data, id: entity?.id, id_module};
+              if(id_module){
+                dispatch(updateRequest(data, id_module));
+              }
         }
         
         
@@ -52,7 +67,6 @@ export default function FormClass({entity, module_id,type} : FormClassProps){
       }
     }, [],
   )
-    const dispatch = useDispatch();
   const formRef = useRef<FormHandles>(null);
   return(<div className="content"><Form ref={formRef} onSubmit={handleSubmit}>
           <Input name="name" type="text" label="Descrição" />

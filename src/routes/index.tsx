@@ -28,7 +28,7 @@ export default function Routes() {
 
           <Route path="/adm/modulos/novo" component={NewModulePageAdm}  isPrivate/>
           <Route path="/adm/modulos/:id_module/editar" component={EditModuleAdm}  isPrivate/>
-          <Route path="/adm/modulos/:id_module/aulas" component={ClassesPageAdm}  isPrivate/>
+          <Route path="/adm/modulos/:id_module/aulas" exact component={ClassesPageAdm}  isPrivate/>
           <Route path="/adm/modulos/:id_module/aulas/novo" component={NewClassPageAdm}  isPrivate/>
           <Route path="/adm/modulos/:id_module/aulas/:id_class/editar" component={EditClassAdm}  isPrivate/>
           

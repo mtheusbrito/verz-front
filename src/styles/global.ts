@@ -53,4 +53,17 @@ export const GlobalStyle  =createGlobalStyle`
 .content{
 padding-top: 2rem;
 }
+
+.options{
+  button, a{
+    border: none;
+    font-size: 1rem;
+    text-decoration: none;
+    &:not(:first-child){
+    margin-left:0.2rem ;
+
+  }
+  }
+  
+}
 `;

@@ -13,7 +13,7 @@ export interface Class{
   id?: number;
   name:string;
   exhibition: any;
-  module_id?: number;
+  id_module?: number;
 }
 export interface Module{
   id?: number;

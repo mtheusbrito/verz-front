@@ -35,7 +35,7 @@ dispatch(reloadData(!reload))
 },[reload])
 
   return (
-    <div>
+    <>
       <Header>
         <h3>Modulos</h3>
         <Link to={`/adm/modulos/novo`} className="btn">
@@ -54,7 +54,7 @@ dispatch(reloadData(!reload))
             </thead>
             <tbody>
               {modules.map((item, index) => {
-                return <ModuleItem key={index} module={item} loadData={()=>loadingData()}/>;
+                return <ModuleItem key={index} module={item} />;
               })}
             </tbody>
           </table>
@@ -62,14 +62,12 @@ dispatch(reloadData(!reload))
           'Nenhum item disponível!'
         )}
       </div>
-    </div>
+    </>
   );
 }
 
 interface ModuleItemProps {
   module: Module;
-  loadData: ()=> void;
-
 }
 function ModuleItem({ module}: ModuleItemProps) {
     const dispatch = useDispatch();
@@ -78,10 +76,10 @@ function ModuleItem({ module}: ModuleItemProps) {
       <tr>
         <td>{module.id}</td>
         <td>{module.name}</td>
-        <td><div className="buttons">
+        <td><div className="options">
             <Link to={`/adm/modulos/${module.id}/editar`}>Editar</Link>
             <button onClick={()=>dispatch(deleteRequest(module.id))}>Remover</button>
-            <Link to={`/adm/modulos/${module.id}/classes`}>Classes</Link>
+            <Link to={`/adm/modulos/${module.id}/aulas`}>Aulas</Link>
           </div></td>
       </tr>
     </>
