@@ -14,6 +14,7 @@ interface RouteProps extends ReactDomRouteProps {
   signed?: boolean;
   isAuthRoute?: boolean
   isSite?: boolean
+  isMaster?:boolean
 }
 
 
@@ -23,17 +24,19 @@ export const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   isAuthRoute =false,
   isSite = false,
+  isMaster = false,
   component: Component,
   ...rest
 }) => {
-  // const { signed } = useSelector<ApplicationState>((state) => state.auth) as AuthState;
-  const signed = true;
-
+ const { signed, master } = useSelector<ApplicationState>((state) => state.auth) as AuthState;
   if (!signed && isPrivate) {
     return <Redirect to="/acessar" />;
   }
   if(signed && isAuthRoute){
     return <Redirect to="/" />;
+  }
+  if(isMaster && !master){
+    return <Redirect to='/adm'/> 
   }
 
 

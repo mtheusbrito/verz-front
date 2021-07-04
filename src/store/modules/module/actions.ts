@@ -1,5 +1,5 @@
-import { Module, User, UserCreateEdit } from "types";
-import { CREATE_REQUEST, DELETE_REQUEST, FAILURE_REQUEST, ModuleActionTypes, SUCCESS_REQUEST, UPDATE_REQUEST } from "./types";
+import { Module } from "types";
+import { CREATE_REQUEST, DELETE_REQUEST, FAILURE_REQUEST, ModuleActionTypes, RELOAD_DATA, SUCCESS_REQUEST, UPDATE_REQUEST } from "./types";
 
 
 export function createRequest(module: Module): ModuleActionTypes{
@@ -19,11 +19,19 @@ export function updateRequest(module: Module): ModuleActionTypes{
   }
 }
 
-export function deleteRequest(id: number): ModuleActionTypes{
+export function deleteRequest(id: number | undefined): ModuleActionTypes{
   return {
     type:DELETE_REQUEST,
     payload:{
       id
+    }
+  }
+}
+export function reloadData(reload: boolean){
+  return {
+    type:RELOAD_DATA,
+    payload: {
+      reload
     }
   }
 }

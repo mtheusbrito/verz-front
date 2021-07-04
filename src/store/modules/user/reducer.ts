@@ -4,7 +4,7 @@ import { LOGOUT } from "../auth/types";
 const initialState: UserState = {
   user: null,
   loading: false
-  
+
 }
 
 

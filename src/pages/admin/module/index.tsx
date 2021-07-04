@@ -1,17 +1,89 @@
-import { Link, useParams } from "react-router-dom";
-import { ParamsProps } from "types";
-import { useGetData } from 'use-axios-react';
-import { Header } from "./styles";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteRequest, reloadData } from 'store/modules/module/actions';
+import { ModuleState } from 'store/modules/module/types';
+import { ApplicationState } from 'store/types';
+import { Module } from 'types';
+import { Header } from './styles';
 
+export default function ModulesPageAdm() {
+  // const [data, loading, error] = useGetData(`/module`);
+  const dispatch = useDispatch();
+const { reload } = useSelector<ApplicationState>((state) => state.modules) as ModuleState;
+  const [modules,setModules] = useState<Module[]>([]);
+  async function loadingData(){
+    try{
+      const {data} = await axios.get('/module') as any;
+      setModules(data);
+    }catch(err){
+      
+    }
+  }
 
-export default function ModulesPageAdm(){
-  const [data, loading, error] = useGetData(`/module`);
-  
-  return (<div>
-    <Header>
-      <h3>Modulos</h3>
-      <Link to={`/adm/modulos/novo`} className="btn">Adicionar modulo</Link>
-    </Header>
+useEffect(()=>{
+loadingData();
+},[])
 
-    </div>)
+useEffect(()=>{
+  if(reload){
+loadingData();
+dispatch(reloadData(!reload))
+  }
+
+},[reload])
+
+  return (
+    <div>
+      <Header>
+        <h3>Modulos</h3>
+        <Link to={`/adm/modulos/novo`} className="btn">
+          Adicionar modulo
+        </Link>
+      </Header>
+      <div className="content">
+        {  modules?.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th style={{ width: '10%', textAlign: 'left'}}>#</th>
+                <th style={{ width: '70%' ,textAlign: 'left'}}>Nome</th>
+                <th style={{ width: '20%' ,textAlign: 'left'}}></th>
+              </tr>
+            </thead>
+            <tbody>
+              {modules.map((item, index) => {
+                return <ModuleItem key={index} module={item} loadData={()=>loadingData()}/>;
+              })}
+            </tbody>
+          </table>
+        ) : (
+          'Nenhum item disponível!'
+        )}
+      </div>
+    </div>
+  );
+}
+
+interface ModuleItemProps {
+  module: Module;
+  loadData: ()=> void;
+
+}
+function ModuleItem({ module}: ModuleItemProps) {
+    const dispatch = useDispatch();
+  return (
+    <>
+      <tr>
+        <td>{module.id}</td>
+        <td>{module.name}</td>
+        <td><div className="buttons">
+            <Link to={`/adm/modulos/${module.id}/editar`}>Editar</Link>
+            <button onClick={()=>dispatch(deleteRequest(module.id))}>Remover</button>
+            <Link to={`/adm/modulos/${module.id}/classes`}>Classes</Link>
+          </div></td>
+      </tr>
+    </>
+  );
 }

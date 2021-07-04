@@ -18,19 +18,17 @@ interface LoginResponse {
 export function* login({ payload }: LoginRequestAction) {
   try {
     const { email, password } = payload;
-    const response: LoginResponse = yield call(axios.post, '/login', {
+    const response: LoginResponse = yield call(axios.post, '/users/login', {
       email,
       password,
     });
     const { token, user } = response.data;
     axios.defaults.headers.Authorization = `Baerer ${token}`;
-
+  
     yield put(loginSuccess(token, user));
     yield put(saveProfileState(user));
     toast.success('Bem vindo!');
-    history.push('/admin');
-
-
+    history.push('/adm');
   } catch (err: any) {
     yield put(loginFailure());
     const { error } = err.response.data;

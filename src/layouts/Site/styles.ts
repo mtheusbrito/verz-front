@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Wrapper = styled.div`
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   /* flex-direction: column;
   justify-content: center;
@@ -14,6 +14,7 @@ export const Content = styled.div`
   margin: 0 auto;
   max-width: 1636px;
   width: 100%;
+ 
   padding-bottom: 0.5rem;
 
   .title{

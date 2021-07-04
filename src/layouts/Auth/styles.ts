@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { darken } from "polished";
 
 export const Wrapper = styled.div`
-  height: 100%;
+ min-height: 100vh;
   background: #0052a8;
   display: flex;
   flex-direction: column;

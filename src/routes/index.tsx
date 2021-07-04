@@ -5,6 +5,7 @@ import NewClassPageAdm from "pages/admin/class/new";
 import ModulesPageAdm from "pages/admin/module";
 import EditModuleAdm from "pages/admin/module/edit";
 import NewModulePageAdm from "pages/admin/module/new";
+import { ClassPage } from "pages/Class";
 import { HomePage } from "pages/Home";
 import { LoginPage } from "pages/Login";
 import { ModulePage } from "pages/Module";
@@ -17,6 +18,7 @@ export default function Routes() {
           <Switch >
             
           <Route path={["/","/modulos"]} exact component={ModulePage} isSite/>
+           <Route path="/:id/aulas" exact component={ClassPage} isSite/>
           <Route path="/modulos/:id" exact component={ModulePage} isSite/>
           <Route path="/acessar" component={LoginPage} isAuthRoute/>
           <Route path='/adm' exact component={HomePage}  isPrivate />
@@ -29,7 +31,10 @@ export default function Routes() {
           <Route path="/adm/modulos/:id_module/aulas" component={ClassesPageAdm}  isPrivate/>
           <Route path="/adm/modulos/:id_module/aulas/novo" component={NewClassPageAdm}  isPrivate/>
           <Route path="/adm/modulos/:id_module/aulas/:id_class/editar" component={EditClassAdm}  isPrivate/>
-
+          
+          <Route path="/adm/usuarios" exact component={HomePage}  isPrivate isMaster/>
+          <Route path="/adm/usuarios/novo" component={HomePage}  isPrivate isMaster/>
+          <Route path="/adm/usuarios/:id/editar" component={HomePage}  isPrivate isMaster/>
         </Switch>
    
 

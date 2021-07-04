@@ -1,4 +1,5 @@
 import  { createGlobalStyle} from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 export const GlobalStyle  =createGlobalStyle`
 *{
     margin: 0;
@@ -24,7 +25,7 @@ export const GlobalStyle  =createGlobalStyle`
   }
   html, body, #root{
     font-family: 'Rubik', sans-serif;
-    height:100%;
+    min-height: 100vh;
     
   }
   button{
@@ -49,7 +50,7 @@ export const GlobalStyle  =createGlobalStyle`
     height: 2.75rem;
     font-size: 1rem;
   }
-.content form{
+.content{
 padding-top: 2rem;
 }
 `;

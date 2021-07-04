@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import history from "services/history";
-import { failureRequest, successRequest } from "./actions";
+import { failureRequest, reloadData, successRequest } from "./actions";
 import { CreateRequestAction, CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST , UpdateRequestAction,DeleteRequestAction } from "./types";
 
 export function* create({ payload }: CreateRequestAction) {
@@ -48,10 +48,8 @@ export function* destroy({ payload }: DeleteRequestAction) {
     const { id } = payload;
     yield call(axios.delete, `/module/${id}`);
     yield put(successRequest());
-  
-    toast.success('Modulo removido!');
-    history.push('/adm/modulos');
-
+    yield put(reloadData(true));  
+    toast.success('Modulo removido!');    
 
   } catch (err: any) {
     yield put(failureRequest());

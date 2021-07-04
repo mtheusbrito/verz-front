@@ -3,6 +3,7 @@ import { User } from "types";
 export interface AuthState{
   token: string | null;
   signed: boolean;
+  master: boolean;
   loading: boolean;
 }
 
@@ -39,6 +40,7 @@ export interface SetTokenAction {
     auth: AuthState;
   };
 }
+
 export interface ResponseGenerator{
     config?:any,
     data?:any,
@@ -49,4 +51,4 @@ export interface ResponseGenerator{
     error?:string
 }
 
-export type AuthActionTypes = LoginRequestAction |LoginSuccessAction |LoginFailureAction| LogoutAction;
+export type AuthActionTypes = LoginRequestAction |LoginSuccessAction |LoginFailureAction| LogoutAction ;

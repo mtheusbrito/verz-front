@@ -1,7 +1,7 @@
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { Input } from 'components/Input';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from 'store/modules/auth/actions';
 import { ApplicationState } from 'store/types';
@@ -43,6 +43,7 @@ export function LoginPage(){
       }
     }, [],
   )
+ 
   return (<div>
 
     <Form ref={formRef} onSubmit={handleSubmit}>

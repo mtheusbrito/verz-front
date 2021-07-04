@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const Wrapper = styled.div`
-  height: 100%;
+ min-height: 100vh;
   display: flex;
   /* flex-direction: column;
   justify-content: center;
@@ -14,14 +14,18 @@ width:20rem;
 padding: 1rem;
 background-color: #f1f1f1;
 
-a{
+a, button{
   display: block;
   padding: 0.3rem;
   text-decoration: none;
+  border:none;
 &:hover{
   text-decoration: underline;
 }
+
+
 }
+
 
 `;
 

@@ -2,7 +2,7 @@ export interface User{
   id?:number;
   name: string;
   email: string;
-  master: string;
+  master: boolean;
 }
 export interface UserCreateEdit extends User{
   password?: string;
