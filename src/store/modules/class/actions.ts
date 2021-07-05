@@ -1,4 +1,5 @@
-import { Class } from "types";
+import { Class, ErrorResponse } from "types";
+import { alertError } from "utils/getValidationErrors";
 import { CREATE_REQUEST, DELETE_REQUEST, FAILURE_REQUEST, ClassActionTypes, RELOAD_DATA, SUCCESS_REQUEST, UPDATE_REQUEST } from "./types";
 
 
@@ -37,7 +38,8 @@ export function reloadData(reload: boolean){
     }
   }
 }
-export function failureRequest(): ClassActionTypes{
+export function failureRequest(err?: ErrorResponse): ClassActionTypes{
+  err && alertError(err);
   return {
     type:FAILURE_REQUEST
   }

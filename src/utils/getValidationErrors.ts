@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+import { ErrorResponse } from 'types';
 import { ValidationError } from 'yup';
 
 interface IErrors {
@@ -16,4 +18,9 @@ export default function getValidationErrors(err: ValidationError): IErrors {
 
 export function errorValidator(){
 
+}
+
+
+export function alertError(err : ErrorResponse){
+toast.error(`${err.response.data.error}`);
 }

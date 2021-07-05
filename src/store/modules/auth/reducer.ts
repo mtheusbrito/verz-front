@@ -2,10 +2,10 @@ import produce from 'immer';
 import {
   AuthActionTypes,
   AuthState,
-  LOGIN_FAILURE,
+  FAILURE_REQUEST,
   LOGIN_REQUEST,
-  LOGIN_SUCCESS,
   LOGOUT,
+  SUCCESS_REQUEST,
 } from './types';
 
 const initialState: AuthState = {
@@ -32,14 +32,14 @@ export default function authReducer(
         draft.master = false;
         break;
       }
-      case LOGIN_SUCCESS: {
+      case SUCCESS_REQUEST: {
         draft.loading = false;
         draft.signed = true;
         draft.token = action.payload.token;
         draft.master = action.payload.user?.master || false;
         break;
       }
-      case LOGIN_FAILURE: {
+      case FAILURE_REQUEST: {
         draft.loading = false;
         draft.signed = false;
         draft.master = false;

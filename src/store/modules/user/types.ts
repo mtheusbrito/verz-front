@@ -4,6 +4,7 @@ import { LogoutAction } from "../auth/types";
 export interface UserState {
   user: User| null; 
   loading: boolean;
+  reload: boolean;
 }
 
 export const USER_SAVE_STATE = "@user/USER_SAVE_STATE";
@@ -12,8 +13,15 @@ export const UPDATE_REQUEST = "@user/UPDATE_UREQUEST";
 export const DELETE_REQUEST = "@user/DELETE_REQUEST";
 export const FAILURE_REQUEST = "@user/FAILURE_REQUEST";
 export const SUCCESS_REQUEST = "@user/SUCCESS_REQUEST";
+export const RELOAD_DATA = "@module/RELOAD_DATA";
 
 
+export interface Reload{
+type: typeof RELOAD_DATA;  
+payload:{
+  reload: boolean
+}
+}
 export interface UserSaveState{
   type: typeof USER_SAVE_STATE;
   payload:{
@@ -35,7 +43,7 @@ export interface CreateRequestAction{
 export interface DeleteRequestAction{
   type: typeof DELETE_REQUEST;
   payload:{
-    id: number
+    id: number | undefined
   }
 }
 export interface FailureRequestAction{
@@ -46,5 +54,5 @@ export interface SuccessRequestAction{
 }
 
 
-export type UserActionTypes = FailureRequestAction | SuccessRequestAction| UserSaveState | UpdateRequestAction | CreateRequestAction | DeleteRequestAction | LogoutAction;
+export type UserActionTypes = FailureRequestAction | SuccessRequestAction| UserSaveState | UpdateRequestAction | CreateRequestAction | DeleteRequestAction | LogoutAction | Reload;
 

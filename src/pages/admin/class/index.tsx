@@ -22,7 +22,7 @@ export default function ClassesPageAdm(){
  
   async function loadingData(){
     try{
-      const {data} = await axios.get<Module>(`/module/${id_module}`);
+      const {data} = await axios.get<Module>(`/modules/${id_module}`);
       setClasses(data.classes || []);
     }catch(err){
       

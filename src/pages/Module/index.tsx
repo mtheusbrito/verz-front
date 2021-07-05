@@ -3,7 +3,7 @@ import {Container} from './styles';
 import { Module} from './../../types'
 import { Link } from 'react-router-dom';
 export function ModulePage(){
-const [data, loading] = useGetData("/module");
+const [data, loading] = useGetData("/modules");
 const modules: Module[] = data;
   return (<>
   

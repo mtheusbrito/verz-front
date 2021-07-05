@@ -8,8 +8,8 @@ export interface AuthState{
 }
 
 export const LOGIN_REQUEST = "@auth/LOGIN_REQUEST";
-export const LOGIN_SUCCESS = "@auth/LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "@auth/LOGIN_FAILURE";
+export const FAILURE_REQUEST = "@auth/FAILURE_REQUEST";
+export const SUCCESS_REQUEST = "@auth/SUCCESS_REQUEST";
 export const LOGOUT = "@auth/LOGOUT";
 
 
@@ -21,14 +21,14 @@ export interface LoginRequestAction {
   };
 }
 export interface LoginSuccessAction {
-  type: typeof LOGIN_SUCCESS;
+  type: typeof SUCCESS_REQUEST;
   payload: {
     token: string;
     user?: User;
   };
 }
 export interface LoginFailureAction {
-  type: typeof LOGIN_FAILURE;
+  type: typeof FAILURE_REQUEST;
 }
 export interface LogoutAction {
   type: typeof LOGOUT;

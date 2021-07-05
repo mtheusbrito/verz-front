@@ -24,7 +24,7 @@ export default function moduleReducer(
         draft.loading = false;
         draft.reload = true;
         break;
-      }
+      } 
       case RELOAD_DATA:{
           draft.reload = action.payload.reload;
           break;

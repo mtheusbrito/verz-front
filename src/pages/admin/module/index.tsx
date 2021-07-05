@@ -15,7 +15,7 @@ const { reload } = useSelector<ApplicationState>((state) => state.modules) as Mo
   const [modules,setModules] = useState<Module[]>([]);
   async function loadingData(){
     try{
-      const {data} = await axios.get('/module') as any;
+      const {data} = await axios.get('/modules') as any;
       setModules(data);
     }catch(err){
       

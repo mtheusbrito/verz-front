@@ -11,7 +11,7 @@ export default function EditClassAdm(){
     let {id_module, id_class} = useParams<ParamsProps>();
   
   
-  const [data, loading, error] = useGetData(`/class/${id_class}`);
+  const [data, loading, error] = useGetData(`/classes/${id_class}`);
   const entity: Class = data
 
 

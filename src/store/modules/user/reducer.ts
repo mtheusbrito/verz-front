@@ -1,9 +1,10 @@
-import { CREATE_REQUEST, DELETE_REQUEST, FAILURE_REQUEST, SUCCESS_REQUEST, UPDATE_REQUEST, UserActionTypes, UserState, USER_SAVE_STATE } from "./types";
+import { CREATE_REQUEST, DELETE_REQUEST, FAILURE_REQUEST, RELOAD_DATA, SUCCESS_REQUEST, UPDATE_REQUEST, UserActionTypes, UserState, USER_SAVE_STATE } from "./types";
 import produce from "immer";
 import { LOGOUT } from "../auth/types";
 const initialState: UserState = {
   user: null,
-  loading: false
+  loading: false,
+  reload: false
 
 }
 
@@ -26,6 +27,11 @@ export default function userReducer(
          draft.user = action.payload.user;
           break;
         }
+         case RELOAD_DATA:{
+          draft.reload = action.payload.reload;
+          break;
+      }
+
         case LOGOUT:{
           draft.user = null;
           break

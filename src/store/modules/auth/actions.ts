@@ -1,5 +1,6 @@
-import { User } from "types";
-import { AuthActionTypes, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from "./types";
+import { ErrorResponse, User } from "types";
+import { alertError } from "utils/getValidationErrors";
+import { AuthActionTypes, FAILURE_REQUEST, LOGIN_REQUEST, LOGOUT, SUCCESS_REQUEST } from "./types";
 
 export function loginRequest(email: string, password: string): AuthActionTypes {
   return {
@@ -13,7 +14,7 @@ export function loginRequest(email: string, password: string): AuthActionTypes {
 
 export function loginSuccess(token: string, user: User): AuthActionTypes {
   return {
-    type: LOGIN_SUCCESS,
+    type: SUCCESS_REQUEST,
     payload: {
       token,
       user: user,
@@ -27,8 +28,9 @@ export function logout(): AuthActionTypes {
     type: LOGOUT,
   };
 }
-export function loginFailure(): AuthActionTypes {
+export function failureRequest(err?: ErrorResponse): AuthActionTypes{
+  err && alertError(err);
   return {
-    type: LOGIN_FAILURE,
-  };
+    type:FAILURE_REQUEST
+  }
 }

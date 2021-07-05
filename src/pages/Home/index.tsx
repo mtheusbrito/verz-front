@@ -1,3 +1,5 @@
 export function HomePage() {
-  return (<div>Home page</div>)
+  return (<><h3>Home page</h3>
+  <p>Página administrativa</p>
+  </>)
 }

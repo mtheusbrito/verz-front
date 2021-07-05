@@ -2,14 +2,14 @@ import { useGetData } from 'use-axios-react';
 import {Container, ContainerItem} from './styles';
 import { Class, Module} from './../../types'
 import {   useParams} from 'react-router-dom';
-
+import Moment from 'react-moment';
 interface ParamsProps{
 id:string
 }
 export function ClassPage(){
 let { id } = useParams<ParamsProps>();
 
-const [data, loading] = useGetData(`/module/${id}`);
+const [data, loading] = useGetData(`/modules/${id}`);
 const module: Module = data;
 
 return (<>
@@ -36,7 +36,7 @@ interface ClassItemProps{
 }
 function ClassItem({classe}:ClassItemProps){
   return (<ContainerItem>
-      <p>{classe.name} - {classe.exhibition}</p>
+      <p>{classe.name} - <Moment date={classe.exhibition} format="DD/MM/YYYY - HH:mm"/></p>
   </ContainerItem>)
 
 }

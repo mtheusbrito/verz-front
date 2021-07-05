@@ -14,7 +14,7 @@ export default function AdminLayout({ children }: AuthLayoutIProps) {
     <Wrapper>
       <Sidebar>
           <Link to="/adm/modulos">Modulos</Link>
-          {master? (<Link to="/adm/modulos">Usuários</Link>): ''}
+          {master? (<Link to="/adm/usuarios">Usuários</Link>): ''}
           
 
           <button onClick={()=>dispatch(logout())}>Sair</button>

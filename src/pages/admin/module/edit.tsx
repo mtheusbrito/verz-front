@@ -11,7 +11,7 @@ export default function EditModuleAdm(){
   let {id_module} = useParams<ParamsProps>();
   
   
-  const [data, loading, error] = useGetData(`/module/${id_module}`);
+  const [data, loading, error] = useGetData(`/modules/${id_module}`);
   const module: Module = data
   function redirect(){
     toast.error('deu erro aqui!');

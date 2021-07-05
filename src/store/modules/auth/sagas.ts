@@ -4,8 +4,8 @@ import axios from 'axios';
 import { LOGIN_REQUEST, LOGOUT, LoginRequestAction, SetTokenAction } from './types';
 
 import history from 'services/history';
-import { User } from 'types';
-import { loginFailure, loginSuccess } from './actions';
+import { ErrorResponse, User } from 'types';
+import { failureRequest, loginSuccess } from './actions';
 import { toast } from 'react-toastify';
 import { saveProfileState } from '../user/actions';
 
@@ -30,9 +30,7 @@ export function* login({ payload }: LoginRequestAction) {
     toast.success('Bem vindo!');
     history.push('/adm');
   } catch (err: any) {
-    yield put(loginFailure());
-    const { error } = err.response.data;
-    error ? toast.error(error) : toast.error('Ops! Contate o suporte!');
+    yield put(failureRequest(err as ErrorResponse));
   }
   
 }
